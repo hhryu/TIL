@@ -49,13 +49,13 @@
   - function / date / undefined
 
 ```json
-{"name":"Henry"}		//string
+{"name":"Henry"}		          //string
 
-{"age":30}				//number
+{"age":30}				            //number
 
-{"isSuccessful":true}	//boolean
+{"isSuccessful":true}       	//boolean
 
-{"phone":null}			//null
+{"phone":null}		          	//null
 
 {
     "person":{"name":"Henry", "age":30, "city":"Seoul"}		//object
