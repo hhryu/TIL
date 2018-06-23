@@ -49,7 +49,8 @@
   - function / date / undefined
 
 ```json
-/*string / number / boolean / null / object / array 순*/
+//string / number / boolean / null / object / array 순
+
 {"name":"Henry"}
 
 {"age":30}
