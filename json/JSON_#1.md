@@ -49,19 +49,20 @@
   - function / date / undefined
 
 ```json
-{"name":"Henry"}		          //string
+/*string / number / boolean / null / object / array 순*/
+{"name":"Henry"}
 
-{"age":30}				            //number
+{"age":30}
 
-{"isSuccessful":true}       	//boolean
+{"isSuccessful":true}
 
-{"phone":null}		          	//null
+{"phone":null}
 
 {
-    "person":{"name":"Henry", "age":30, "city":"Seoul"}		//object
+    "person":{"name":"Henry", "age":30, "city":"Seoul"}
 }
 
 {
-    "persons":["Henry", "Anna", "James"]		//array
+    "persons":["Henry", "Anna", "James"]
 }
 ```
