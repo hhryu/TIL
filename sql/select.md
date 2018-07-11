@@ -23,7 +23,7 @@ SELECT *FROM table_name;
 | :--: | :---: | :---: |
 |  1   | Mark  | Seoul |
 |  2   | David | Busan |
-|  3   |  Sam  | Daegu |
+|  3   |  Sam  | Busan |
 
 ##### 2-1) 특정 Column만 보고싶은 경우
 
