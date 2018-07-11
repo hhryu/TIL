@@ -46,7 +46,7 @@ SELECT Name, City FROM PERSONS;
 - Syntax
 
 ```sql
-SELECT Name, City FROM PERSONS;
+SELECT *FROM PERSONS;
 ```
 
 - Result
