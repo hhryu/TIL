@@ -36,7 +36,7 @@
 
 - 두 테이블에서 기준으로 잡은 column의 값이 일치하는 rows를 보여준다.
 
-![](C:\Users\hhryu\Documents\github_repo\sql\inner_join.png)
+![](https://github.com/hhryu/TIL/blob/master/sql/join_images/inner_join.png?raw=true)
 
 ##### 1-1) 2개의 테이블 Join
 
@@ -79,7 +79,7 @@ INNER JOIN PERSONS_INFO3 ON PERSONS_INFO2.ID = PERSONS_INFO3.ID;
 
 - 왼쪽 테이블(기준) + 오른쪽 테이블 (단, 오른쪽 테이블은 조건에 일치하지 않는 row의 값을 NULL로 표현)
 
-![](C:\Users\hhryu\Documents\github_repo\sql\left_join.png)
+![](https://github.com/hhryu/TIL/blob/master/sql/join_images/left_join.png?raw=true)
 
 - Syntax
 
@@ -101,7 +101,7 @@ SELECT * FROM PERSONS_INFO1 LEFT JOIN PERSONS_INFO2 ON PERSONS_INFO1.ID = PERSON
 
 - 오른쪽 테이블(기준) + 왼쪽 테이블 (단, 왼쪽 테이블은 조건에 일치하지 않는 row의 값을 NULL로 표현)
 
-![](C:\Users\hhryu\Documents\github_repo\sql\right_join.png)
+![](https://github.com/hhryu/TIL/blob/master/sql/join_images/right_join.png?raw=true)
 
 - Syntax
 
