@@ -124,7 +124,7 @@ SELECT * FROM PERSONS_INFO1 RIGHT JOIN PERSONS_INFO2 ON PERSONS_INFO1.ID = PERSO
 - 왼쪽 테이블(기준) + 오른쪽 테이블(단, 오른쪽 테이블은 조건에  일치하지 않는 row의 값을 NULL로 표현)
 - 오른쪽 테이블(기준) + 왼쪽 테이블(단, 왼쪽테이블은 조건에  일치하지 않는 row의 값을 NULL로 표현)
 
-![](C:\Users\hhryu\Documents\github_repo\sql\full_join.png)
+![](https://github.com/hhryu/TIL/blob/master/sql/join_images/full_join.png?raw=true)
 
 - Syntax
 
