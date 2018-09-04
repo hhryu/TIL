@@ -1,14 +1,14 @@
-    class UnderLineTextBox : TextBox
+class UnderLineTextBox : TextBox
+{
+    public UnderLineTextBox()
     {
-        public UnderLineTextBox()
+        BorderStyle = System.Windows.Forms.BorderStyle.None;
+        AutoSize = false;
+        Controls.Add(new Label()
         {
-            BorderStyle = System.Windows.Forms.BorderStyle.None;
-            AutoSize = false;
-            Controls.Add(new Label()
-            {
-                Height = 2,
-                Dock = DockStyle.Bottom,
-                BackColor = Color.Black
-            });
-        }
+            Height = 2,
+            Dock = DockStyle.Bottom,
+            BackColor = Color.Black
+        });
     }
+}
