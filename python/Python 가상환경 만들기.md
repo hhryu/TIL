@@ -12,3 +12,5 @@
 
 - pip install django(버전)
 
+#### 4. django rest framework 설치
+- pip install djangorestframework
