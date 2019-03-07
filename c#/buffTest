@@ -1,0 +1,64 @@
+private byte[] m_buffer;
+        int m_bufferStartIndex = 0;
+
+        byte startBit = 0x02;
+        byte endBit = 0x03;
+        int packetSize = 9;
+
+        private void Receive(byte[] packet)
+        {
+            int packetLength = packet.Length;
+
+            int cnt = 0;
+            foreach (var b in packet)
+            {
+                if (b == startBit)
+                {
+                    if (m_buffer == null)
+                    {
+                        m_buffer = new byte[packetSize];
+                        m_bufferStartIndex = 0;
+                    }
+
+                    int copySize = packet.Length - cnt;
+                    if (copySize == packetSize)
+                    {
+                        Buffer.BlockCopy(packet, cnt, m_buffer, m_bufferStartIndex, copySize);
+                        AddListboxItem();
+                        break;
+                    }
+                    else
+                    {
+                        m_buffer[m_bufferStartIndex] = b;
+                    }
+                }
+                else
+                {
+                    if (m_buffer == null)
+                    {
+                        cnt++;
+                        continue;
+                    }
+
+                    m_buffer[m_bufferStartIndex] = b;
+
+                    if (b == endBit)
+                    {
+                        AddListboxItem();
+                    }
+                }
+
+                m_bufferStartIndex++;
+                cnt++;
+            }
+        }
+
+        private void AddListboxItem()
+        {
+            byte[] dataByte = new byte[packetSize - 2];
+            Buffer.BlockCopy(m_buffer, 1, dataByte, 0, (packetSize - 2));
+            string data = Encoding.UTF8.GetString(dataByte);
+            this.listBox1.Items.Add(data);
+
+            m_buffer = null;
+        }
