@@ -1,0 +1,135 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
+
+namespace MySQLConnection
+{
+    class ExcelWriter
+    {
+        Excel.Application app;
+        Excel.Workbook wBook;
+        Excel.Worksheet wSheet;
+
+        List<object> releaseItems;
+        List<Model> rows;
+
+        public bool Exist { get; private set; }
+
+        public void CreateExcelFile()
+        {
+            if (this.Exist)
+            {
+                return;
+            }
+
+            app = new Excel.Application();
+            wBook = app.Workbooks.Add();
+            wSheet = wBook.Worksheets.Add();
+
+            releaseItems = new List<object>();
+
+            releaseItems.Add(app);
+            releaseItems.Add(wBook);
+            releaseItems.Add(wSheet);
+
+            this.Exist = true;
+        }
+
+        public void WriteInCells(string fileName)
+        {
+            CreateRows();
+
+            int rowIndex = 1;
+            foreach (var row in rows)
+            {
+                int colIndex = 1;
+                foreach (var item in row.GetItems())
+                {
+                    wSheet.Cells[rowIndex, colIndex] = item;
+                    colIndex++;
+                }
+
+                rowIndex++;
+            }
+
+            wBook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal);
+            wBook.Close(true);
+            app.Quit();
+        }
+
+        private void CreateRows()
+        {
+            if (rows == null)
+            {
+                rows = new List<Model>();
+            }
+            rows.Add(new Model("날짜", "시간", "차량번호"));
+
+            rows.Add(new Model("20190905", "193520", "xxxxxxx"));
+            rows.Add(new Model("20190908", "195540", "xxxxxxx"));
+            rows.Add(new Model("20190909", "201132", "xxxxxxx"));
+        }
+
+        public void ReleaseExcelObj()
+        {
+            try
+            {
+                foreach (var item in releaseItems)
+                {
+                    if (item != null)
+                    {
+                        Marshal.ReleaseComObject(item);
+                    }
+                }
+
+                this.Exist = false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                releaseItems = null;
+            }
+        }
+
+        ~ExcelWriter()
+        {
+            if (releaseItems != null)
+            {
+                ReleaseExcelObj();
+            }
+        }
+    }
+
+    class Model
+    {
+        public string Date { get; }
+        public string Time { get; }
+        public string PlateNumber { get; }
+        
+        string[] items;
+
+        public Model(string date, string time, string plateNumber)
+        {
+            Date = date;
+            Time = time;
+            PlateNumber = plateNumber;
+
+            items = new string[3];
+            items[0] = this.Date;
+            items[1] = this.Time;
+            items[2] = this.PlateNumber;
+        }
+
+        public IEnumerable<string> GetItems()
+        {
+            foreach (var item in items)
+            {
+                yield return item;
+            }
+        }
+    }
+}
